@@ -1,9 +1,23 @@
 import { Router } from "express";
-
+import { prisma } from "db"
 export const userRouter = Router()
 
-userRouter.get('/user', (req, res) => {
+
+userRouter.post('/user', async (req, res) => {
+
+   const email = req.body
+//    const user =  await prisma.user.create({
+//         data : {
+//             email : email
+//         }
+//     })
+console.log(email);
+
+
+
     return res.send({
-        message: 'success'
+
+        message: "vvhjh"//user.email
     })
+
 })
