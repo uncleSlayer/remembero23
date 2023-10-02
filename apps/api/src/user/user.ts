@@ -3,21 +3,42 @@ import { prisma } from "db"
 export const userRouter = Router()
 
 
-userRouter.post('/user', async (req, res) => {
+userRouter.post('/login', async (req, res) => {
 
-   const email = req.body
-//    const user =  await prisma.user.create({
-//         data : {
-//             email : email
-//         }
-//     })
-console.log(email);
+    try {
+        const email = req.body.userEmail
 
+        const user = prisma.user.findFirst({
+            where: {
+                email: email
+            }
+        })
 
+        if (!user) {
+            const newUser = await prisma.user.create({
+                data: {
+                    email: email
+                }
+            })
 
-    return res.send({
+            return res.send({
+                success: true,
+                message: 'new user created'
+            })
+        } else {
+            // login the user
+            return
+        }
 
-        message: "vvhjh"//user.email
-    })
+        return res.send({
+
+            message: "vvhjh"//user.email
+        })
+    } catch (error) {
+        return res.status(400).send({
+            success: false,
+            error: error
+        })
+    }
 
 })
