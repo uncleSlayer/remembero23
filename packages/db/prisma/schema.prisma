@@ -11,6 +11,28 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id      Int       @id @default(autoincrement())
+  email   String    @unique
+  Journal Journal[]
+}
+
+model Journal {
+  id Int @id @default(autoincrement())
+
+  title String
+  body  String
+
+  creationDate DateTime @default(now())
+  imageOne     String
+
+  category Category
+
+  author User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+enum Category {
+  STUDY
+  WORK
+  FUN
 }

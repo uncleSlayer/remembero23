@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Journal" ALTER COLUMN "creationDate" SET DEFAULT CURRENT_TIMESTAMP;

@@ -27,13 +27,12 @@ userRouter.post('/login', async (req, res) => {
             })
         } else {
             // login the user
-            return
+            return res.send({
+                success: true,
+                message: email
+            })
         }
 
-        return res.send({
-
-            message: "vvhjh"//user.email
-        })
     } catch (error) {
         return res.status(400).send({
             success: false,
